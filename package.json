@@ -1,0 +1,35 @@
+{
+  "name": "rpi-door",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build/index.js",
+    "build": "babel src --out-dir build",
+    "dev": "babel-node src/index.js",
+    "test": "mocha --compilers js:babel-core/register --recursive tests",
+    "lint": "eslint server || exit 0"
+  },
+  "keywords": [],
+  "author": "Ryan Hirsch <ryan.hirsch@gmail.com> (http://hirsch.io)",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "helmet": "^2.2.0",
+    "morgan": "^1.7.0",
+    "winston": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-stage-2": "^6.13.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.6.0",
+    "eslint-config-hirsch": "^1.0.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "mocha": "^3.0.2"
+  }
+}
