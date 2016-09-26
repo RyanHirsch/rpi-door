@@ -6,12 +6,8 @@ const board = new five.Board({
 
 let doorStatus = null;
 
-export function initialize({ closing, opening, opened, closed }) {
-  board.on('ready', function() {
+function setupOpenerSwitch({ opened, closing }) {
     const openerSwitch = new five.Switch('GPIO17');
-    const doorSwitch = new five.Switch('GPIO27');
-
-    doorSwitch.invert = true;
     openerSwitch.invert = true;
 
     openerSwitch.on('close', function() {
@@ -24,31 +20,42 @@ export function initialize({ closing, opening, opened, closed }) {
     });
 
     openerSwitch.on('open', function() {
-      if(doorStatus !== 'closing') {
+      if(doorStatus !== 'closing' && doorStatus === 'opened') {
         doorStatus = 'closing';
         if(closing) {
           closing();
         }
       }
     });
+}
 
-    //    doorSwitch.on('close', function() {
-    //      if(doorStatus !== 'closed') {
-    //        doorStatus = 'closed';
-    //        if(closed) {
-    //          closed();
-    //        }
-    //      }
-    //    });
-    //
-    //    doorSwitch.on('open', function() {
-    //      if(doorStatus !== 'opening') {
-    //        doorStatus = 'opening';
-    //        if(opening) {
-    //          opening();
-    //        }
-    //      }
-    //    });
+function setupDoorSwitch({ closed, opening }) {
+    const doorSwitch = new five.Switch('GPIO27');
+    doorSwitch.invert = true;
+
+    doorSwitch.on('close', function() {
+      if(doorStatus !== 'closed') {
+        doorStatus = 'closed';
+        if(closed) {
+          closed();
+        }
+      }
+    });
+
+    doorSwitch.on('open', function() {
+      if(doorStatus !== 'opening' && doorStatus === 'closed') {
+        doorStatus = 'opening';
+        if(opening) {
+          opening();
+        }
+      }
+    });
+}
+
+export function initialize({ closing, opening, opened, closed }) {
+  board.on('ready', function() {
+    setupOpenerSwitch({ closing, opened });
+    setupDoorSwitch({ opening, closed });
   });
 }
 
