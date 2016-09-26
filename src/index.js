@@ -4,6 +4,9 @@ import helmet from 'helmet';
 import compression from 'compression';
 import logger from './lib/logger';
 
+import { initialize, getDoorStatus } from './lib/hardware';
+initialize();
+
 const app = express();
 app.use(helmet());
 app.use(compression());
@@ -12,7 +15,8 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
   res.json({
     works: true,
-    version: '1.0.1',
+    version: '1.0.2',
+    status: getDoorStatus(),
   });
 });
 
