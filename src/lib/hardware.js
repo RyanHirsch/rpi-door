@@ -12,6 +12,7 @@ export function initialize({ closing, opening, opened, closed }) {
     const doorSwitch = new five.Switch('GPIO27');
 
     doorSwitch.invert = true;
+    openerSwitch.invert = true;
 
     openerSwitch.on('close', function() {
       if(doorStatus !== 'opened') {

@@ -5,7 +5,12 @@ import compression from 'compression';
 import logger from './lib/logger';
 
 import { initialize, getDoorStatus } from './lib/hardware';
-initialize();
+initialize({
+  opened: () => logger.log('info', 'opened'),
+  opening: () => logger.log('info', 'opening'),
+  closed: () => logger.log('info', 'closed'),
+  closing: () => logger.log('info', 'closing'),
+});
 
 const app = express();
 app.use(helmet());
