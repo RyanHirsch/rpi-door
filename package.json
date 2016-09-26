@@ -18,7 +18,9 @@
     "compression": "^1.6.2",
     "express": "^4.14.0",
     "helmet": "^2.2.0",
+    "johnny-five": "^0.10.0",
     "morgan": "^1.7.0",
+    "raspi-io": "^6.1.0",
     "winston": "^2.2.0"
   },
   "devDependencies": {
