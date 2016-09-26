@@ -32,23 +32,23 @@ export function initialize({ closing, opening, opened, closed }) {
       }
     });
 
-    doorSwitch.on('close', function() {
-      if(doorStatus !== 'closed') {
-        doorStatus = 'closed';
-        if(closed) {
-          closed();
-        }
-      }
-    });
-
-    doorSwitch.on('open', function() {
-      if(doorStatus !== 'opening') {
-        doorStatus = 'opening';
-        if(opening) {
-          opening();
-        }
-      }
-    });
+    //    doorSwitch.on('close', function() {
+    //      if(doorStatus !== 'closed') {
+    //        doorStatus = 'closed';
+    //        if(closed) {
+    //          closed();
+    //        }
+    //      }
+    //    });
+    //
+    //    doorSwitch.on('open', function() {
+    //      if(doorStatus !== 'opening') {
+    //        doorStatus = 'opening';
+    //        if(opening) {
+    //          opening();
+    //        }
+    //      }
+    //    });
   });
 }
 
